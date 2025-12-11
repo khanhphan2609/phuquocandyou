@@ -21,7 +21,7 @@ export default function Home() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover scale-105 -z-10"
       >
-        <source src="https://youtu.be/v4YWwU7l1k8" type="video/mp4" />
+        <source src="https://iytl3jrr7zohuy8o.public.blob.vercel-storage.com/bg.mp4" type="video/mp4" />
       </video>
 
       {/* Main Content Box */}
