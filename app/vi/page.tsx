@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState } from "react"; 
 import Image from "next/image";
 import { motion, AnimatePresence, Variants, easeInOut } from "framer-motion";
 
@@ -48,22 +48,44 @@ export default function Home() {
           className="w-full md:w-3/5 z-10"
         >
           <h1 className="text-[17vw] md:text-[8.5rem] lg:text-[10.5rem] font-[1000] tracking-tighter uppercase select-none flex flex-col items-center md:items-start leading-none">
-            {["Phú", "Quốc", "& You"].map((text, idx) => (
-              <motion.span
-                key={idx}
-                variants={itemVars}
-                className={`inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-${idx === 0 ? 16 : idx === 1 ? 32 : 10} pb-4 ${idx === 1 ? "-mt-24 md:-mt-32" : idx === 2 ? "-mt-8 md:-mt-10" : ""}`}
-                style={{ 
-                  backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                  backgroundPosition: idx === 0 ? "center top" : idx === 1 ? "center 45%" : "center bottom",
-                  WebkitBackgroundClip: "text",
-                }}
-              >
-                {text}
-              </motion.span>
-            ))}
-          </h1>
+            
+            <motion.span
+              variants={itemVars}
+              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-16 pb-2"
+              style={{ 
+                backgroundImage: "url('/images/thumnails/bg-title.webp')",
+                backgroundPosition: "center top",
+                WebkitBackgroundClip: "text",
+              }}
+            >
+              Phú
+            </motion.span>
 
+            <motion.span
+              variants={itemVars}
+              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-32 pb-4 -mt-24 md:-mt-32"
+              style={{ 
+                backgroundImage: "url('/images/thumnails/bg-title.webp')",
+                backgroundPosition: "center 45%",
+                WebkitBackgroundClip: "text",
+              }}
+            >
+              Quốc
+            </motion.span>
+
+            <motion.span
+              variants={itemVars}
+              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-10 pb-4 -mt-8 md:-mt-10"
+              style={{ 
+                backgroundImage: "url('/images/thumnails/bg-title.webp')",
+                backgroundPosition: "center bottom",
+                WebkitBackgroundClip: "text",
+              }}
+            >
+              & You
+            </motion.span>
+          </h1>
+          
           <motion.p 
             variants={itemVars}
             className="text-[#87d1d4] mt-12 md:mt-6 text-sm md:text-base tracking-[0.3em] font-light opacity-80 uppercase text-center md:text-left"
@@ -106,7 +128,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* POPUP COMING SOON */}
+      {/* Popup Coming Soon */}
       <AnimatePresence>
         {isPopupOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
