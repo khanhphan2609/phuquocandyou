@@ -1,11 +1,9 @@
 "use client";
-// 1. Phải có useState ở đây
-import { useState } from "react"; 
+import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants, easeInOut } from "framer-motion";
 
 export default function Home() {
-  // 2. Trạng thái đóng mở popup
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const gridMap = [
@@ -17,7 +15,7 @@ export default function Home() {
 
   const images = Array.from({ length: 10 }, (_, i) => `/images/thumnails/${i + 1}.png`);
 
-  const containerVars = {
+  const containerVars: Variants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
@@ -25,15 +23,15 @@ export default function Home() {
     }
   };
 
-  const itemVars = {
+  const itemVars: Variants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: easeInOut } }
   };
 
   return (
     <main className="min-h-screen bg-[#004d5a] text-white overflow-hidden relative flex flex-col font-sans">
       
-      {/* Menu Hamburger - Click vào đây để mở Popup */}
+      {/* Menu Hamburger */}
       <div 
         className="absolute top-8 right-8 z-50 flex flex-col items-end gap-1.5 cursor-pointer p-2 group" 
         onClick={() => setIsPopupOpen(true)}
@@ -50,45 +48,22 @@ export default function Home() {
           className="w-full md:w-3/5 z-10"
         >
           <h1 className="text-[17vw] md:text-[8.5rem] lg:text-[10.5rem] font-[1000] tracking-tighter uppercase select-none flex flex-col items-center md:items-start leading-none">
-            
-            <motion.span
-              variants={itemVars}
-              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-16 pb-2"
-              style={{ 
-                backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                backgroundPosition: "center top",
-                WebkitBackgroundClip: "text",
-              }}
-            >
-              Phú
-            </motion.span>
-
-            {/* Dòng 2: QUỐC - Đã fix dấu Ố bằng pt-32 và -mt-32 */}
-            <motion.span
-              variants={itemVars}
-              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-32 pb-4 -mt-24 md:-mt-32"
-              style={{ 
-                backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                backgroundPosition: "center 45%",
-                WebkitBackgroundClip: "text",
-              }}
-            >
-              Quốc
-            </motion.span>
-
-            <motion.span
-              variants={itemVars}
-              className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-10 pb-4 -mt-8 md:-mt-10"
-              style={{ 
-                backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                backgroundPosition: "center bottom",
-                WebkitBackgroundClip: "text",
-              }}
-            >
-              & You
-            </motion.span>
+            {["Phú", "Quốc", "& You"].map((text, idx) => (
+              <motion.span
+                key={idx}
+                variants={itemVars}
+                className={`inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-${idx === 0 ? 16 : idx === 1 ? 32 : 10} pb-4 ${idx === 1 ? "-mt-24 md:-mt-32" : idx === 2 ? "-mt-8 md:-mt-10" : ""}`}
+                style={{ 
+                  backgroundImage: "url('/images/thumnails/bg-title.webp')",
+                  backgroundPosition: idx === 0 ? "center top" : idx === 1 ? "center 45%" : "center bottom",
+                  WebkitBackgroundClip: "text",
+                }}
+              >
+                {text}
+              </motion.span>
+            ))}
           </h1>
-          
+
           <motion.p 
             variants={itemVars}
             className="text-[#87d1d4] mt-12 md:mt-6 text-sm md:text-base tracking-[0.3em] font-light opacity-80 uppercase text-center md:text-left"
@@ -98,7 +73,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Grid ảnh - Click vào ô nào cũng mở Popup */}
+      {/* Grid ảnh */}
       <motion.div 
         initial="hidden"
         animate="visible"
@@ -111,7 +86,7 @@ export default function Home() {
               key={idx}
               variants={itemVars}
               whileHover={{ scale: 1.05, zIndex: 20 }}
-              onClick={() => setIsPopupOpen(true)} // Click mở popup
+              onClick={() => setIsPopupOpen(true)}
               className="aspect-square relative overflow-hidden bg-transparent cursor-pointer group"
             >
               {imgIdx !== null && (
@@ -131,7 +106,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* --- POPUP COMING SOON --- */}
+      {/* POPUP COMING SOON */}
       <AnimatePresence>
         {isPopupOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
