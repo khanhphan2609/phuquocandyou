@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Phú Quốc & You",
   description: "Nền tảng kết nối cộng đồng người quan tâm đến Phú Quốc số 1 thế giới.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.png",
   },
 };
 
