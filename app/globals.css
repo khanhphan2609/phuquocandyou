@@ -1,13 +1,9 @@
-/* BẮT BUỘC: Hai dòng này phải ở Dòng 1 và Dòng 2 */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 :root {
-  /* Blue Darker làm màu nền mặc định */
-  --background: #113d48; 
-  --foreground: #ffffff;
-
-  /* ========== Color Pallet Variables ========== */
+  /* ========== COLOR PALLER VARIABLES ========== */
+  /* Blue */
   --blue-light: #eaf7fa;
   --blue-light-hover: #e0f3f8;
   --blue-light-active: #bfe6f0;
@@ -22,14 +18,63 @@
 
   --blue-darker: #113d48;
 
+  /* Red */
+  --red-light: #faeef0;
+  --red-light-hover: #f8e6e9;
+  --red-light-active: #f1cad1;
+
+  --red-normal: #d1556c;
+  --red-normal-hover: #bc4d61;
+  --red-normal-active: #a74456;
+
+  --red-dark: #9d4051;
+  --red-dark-hover: #7d3341;
+  --red-dark-active: #5e2631;
+
+  --red-darker: #491e26;
+
+  /* Purple */
+  --purple-light: #eeeff9;
+  --purple-light-hover: #e6e6f6;
+  --purple-light-active: #cbcced;
+
+  --purple-normal: #565ac4;
+  --purple-normal-hover: #4d51b0;
+  --purple-normal-active: #45489d;
+
+  --purple-dark: #414493;
+  --purple-dark-hover: #343676;
+  --purple-dark-active: #272858;
+
+  --purple-darker: #1e1f45;
+
+  /* Orange */
+  --orange-light: #fefbf7;
+  --orange-light-hover: #fdf9f3;
+  --orange-light-active: #fcf2e7;
+
+  --orange-normal: #f4d4b2;
+  --orange-normal-hover: #dcbfa0;
+  --orange-normal-active: #c3aa8e;
+
+  --orange-dark: #b79f86;
+  --orange-dark-hover: #927f6b;
+  --orange-dark-active: #6e5f50;
+  
+  --orange-darker: #554a3e;
+
+  /* Blue Darker làm màu nền mặc định */
+  --background: #113d48;
+  --foreground: #ffffff;
+
   /* Font Family Variable */
-  --font-poppins: 'Poppins', sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   /* Bảng màu Blue cho Tailwind v4 */
   --color-blue-light: var(--blue-light);
   --color-blue-light-hover: var(--blue-light-hover);

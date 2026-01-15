@@ -10,7 +10,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Phú Quốc & You",
-  description: "Tạp chí du lịch và phong cách sống",
+  description: "Nền tảng kết nối cộng đồng người quan tâm đến Phú Quốc số 1 thế giới.",
   icons: {
     icon: "/favicon.ico",
   },
