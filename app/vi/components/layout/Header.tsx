@@ -25,7 +25,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[var(--blue-darker)] shadow-xl sticky top-0 z-100">
+    <header className="fixed bg-[var(--blue-darker)] shadow-xl sticky top-0 z-100">
       {/* HEADER BAR */}
       <div className="h-[72px] px-4 flex items-center justify-between lg:justify-around">
         {/* Logo */}

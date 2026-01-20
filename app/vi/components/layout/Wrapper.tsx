@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 
 /* ================= CONFIG ================= */
 
@@ -59,12 +59,8 @@ const PRESET = PARTICLES.luckyMoney;
 
 /* ========================================= */
 
-export default function Wrapper({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const ref = useRef<HTMLDivElement | null>(null);
+export default function Wrapper({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const container = ref.current;
@@ -73,33 +69,28 @@ export default function Wrapper({
     for (let i = 0; i < PRESET.count; i++) {
       const el = document.createElement("span");
 
-      // 🎲 Random ký tự
       const char =
-        PRESET.chars[
-          Math.floor(Math.random() * PRESET.chars.length)
-        ];
-      el.innerText = char;
+        PRESET.chars[Math.floor(Math.random() * PRESET.chars.length)];
+      el.textContent = char;
 
       const size =
-        Math.random() * (PRESET.maxSize - PRESET.minSize) +
-        PRESET.minSize;
+        Math.random() * (PRESET.maxSize - PRESET.minSize) + PRESET.minSize;
 
       const duration =
-        Math.random() *
-          (PRESET.maxDuration - PRESET.minDuration) +
+        Math.random() * (PRESET.maxDuration - PRESET.minDuration) +
         PRESET.minDuration;
 
+      const delay = Math.random() * 5;
       const opacity =
-        Math.random() *
-          (PRESET.opacity[1] - PRESET.opacity[0]) +
+        Math.random() * (PRESET.opacity[1] - PRESET.opacity[0]) +
         PRESET.opacity[0];
 
-      const sway = Math.random() * 40 - 20;
+      const sway = Math.random() * 60 - 30;
 
       el.style.position = "absolute";
-      el.style.top = "-80px";
       el.style.left = Math.random() * 100 + "%";
-      el.style.fontSize = size + "px";
+      el.style.top = "-100px";
+      el.style.fontSize = `${size}px`;
       el.style.opacity = opacity.toString();
       el.style.color = PRESET.color;
       el.style.pointerEvents = "none";
@@ -108,7 +99,7 @@ export default function Wrapper({
       el.style.setProperty("--sway", `${sway}px`);
 
       el.style.animation = `
-        fall ${duration}s linear ${Math.random() * 4}s infinite,
+        fall ${duration}s linear ${delay}s infinite,
         sway ${duration / 2}s ease-in-out infinite
       `;
 
@@ -135,9 +126,15 @@ export default function Wrapper({
 
       {children}
 
-      {/* Animations */}
       <style jsx>{`
+        span {
+          will-change: transform;
+        }
+
         @keyframes fall {
+          from {
+            transform: translateY(-100px);
+          }
           to {
             transform: translateY(110vh);
           }
@@ -145,19 +142,22 @@ export default function Wrapper({
 
         @keyframes sway {
           0% {
-            transform: translateX(0);
+            margin-left: 0;
           }
           50% {
-            transform: translateX(var(--sway));
+            margin-left: var(--sway);
           }
           100% {
-            transform: translateX(0);
+            margin-left: 0;
           }
         }
 
         @keyframes spin {
+          from {
+            rotate: 0deg;
+          }
           to {
-            transform: rotate(360deg);
+            rotate: 360deg;
           }
         }
       `}</style>
