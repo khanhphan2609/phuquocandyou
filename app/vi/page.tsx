@@ -1,15 +1,17 @@
 
+import Wrapper from './components/layout/Wrapper'
 import Header from './components/layout/Header'
 import Socials from './components/layout/Socials'
 import Hero from './components/section/Hero'
-import Wrapper from './components/layout/Wrapper'
+import Services from './components/section/Services'
 
-export default function Test(){
+export default function HomeVi(){
     return (
         <Wrapper>
             <Header />
             <Socials />
             <Hero />
+            <Services />
         </Wrapper>
     )
 }

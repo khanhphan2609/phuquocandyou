@@ -44,7 +44,7 @@ export default function Hero() {
   return (
     <section
       id="Hero"
-      className="relative min-h-[92vh] flex items-center justify-center px-4"
+      className="relative min-h-[92vh] flex items-center justify-center px-4 mb-20 lg:mb-0"
     >
       <div
         className="
