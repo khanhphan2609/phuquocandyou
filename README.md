@@ -42,7 +42,7 @@ The `main-page` is responsible for:
 │   │   └── layout
 │   │       ├── Header.tsx
 │   │       ├── Footer.tsx
-│   │       └── SectionWrapper.tsx
+│   │       └── Wrapper.tsx
 │
 /public
 └── images
@@ -81,7 +81,7 @@ The top navigation bar, including: logo, navigation links, login...
 - `Footer.tsx`
 The bottom section of the page containing company information, quick links, and social media references.
 
-- `SectionWrapper.tsx`
+- `Wrapper.tsx`
 A shared wrapper used across sections to apply consistent spacing, max-width, and background styles.
 
 ## Basic SEO (Search Engine Optimization)
