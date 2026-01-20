@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Bỏ qua static & api
+  // Ignore static & api
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
@@ -12,10 +12,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Root → /vn
+  // Root → /vi
   if (pathname === '/') {
     return NextResponse.redirect(
-      new URL('/vn', request.url)
+      new URL('/vi', request.url)
     );
   }
 

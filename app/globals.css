@@ -3,6 +3,8 @@
 
 :root {
   /* ========== COLOR PALLER VARIABLES ========== */
+  --white: #ffffff;
+  --black: #000000;
   /* Blue */
   --blue-light: #eaf7fa;
   --blue-light-hover: #e0f3f8;
@@ -33,6 +35,21 @@
 
   --red-darker: #491e26;
 
+  /* Gray */
+  --gray-light: #f9fafb;
+  --gray-light-hover: #f3f4f6;
+  --gray-light-active: #e5e7eb;
+
+  --gray-normal: #d1d5db;
+  --gray-normal-hover: #9ca3af;
+  --gray-normal-active: #6b7280;
+
+  --gray-dark: #4b5563;
+  --gray-dark-hover: #374151;
+  --gray-dark-active: #1f2937;
+
+  --gray-darker: #111827;
+
   /* Purple */
   --purple-light: #eeeff9;
   --purple-light-hover: #e6e6f6;
@@ -60,12 +77,13 @@
   --orange-dark: #b79f86;
   --orange-dark-hover: #927f6b;
   --orange-dark-active: #6e5f50;
-  
+
   --orange-darker: #554a3e;
 
-  /* Blue Darker làm màu nền mặc định */
-  --background: #113d48;
-  --foreground: #ffffff;
+  /* Default Colors */
+  --primary: var(--blue-normal);
+  --background: var(--blue-darker);
+  --foreground: var(--blue-light);
 
   /* Font Family Variable */
   --font-poppins: "Poppins", sans-serif;
@@ -95,7 +113,7 @@
 }
 
 body {
-  background-color: var(--blue-darker);
+  background-color: var(--white-background);
   color: var(--foreground);
   font-family: var(--font-poppins);
   -webkit-font-smoothing: antialiased;
