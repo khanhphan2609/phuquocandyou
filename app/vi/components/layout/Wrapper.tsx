@@ -18,13 +18,13 @@ const PARTICLES = {
   },
 
   luckyMoney: {
-    char: "🧧",
+    char: "TET",
     count: 20,
     minSize: 24,
     maxSize: 50,
     minDuration: 10,
     maxDuration: 18,
-    opacity: [0.5, .7],
+    opacity: [0.2, 0.5],
     color: "inherit",
     rotate: true,
   },
