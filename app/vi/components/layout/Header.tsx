@@ -15,7 +15,7 @@ const MENU_ITEMS = [
         Tin <span className="text-[var(--red-normal)]">hot</span>
       </>
     ),
-    href: "/",
+    href: "https://news.phuquocandyou.com",
   },
   { label: "Việc Làm", href: "/" },
   { label: "Về Chúng Tôi", href: "/" },
