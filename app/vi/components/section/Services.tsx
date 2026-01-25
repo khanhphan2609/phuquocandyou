@@ -52,8 +52,11 @@ export default function Services() {
       "
       >
         {SERVICES.map((item, index) => (
-          <CardService key={index} title={item.title} href={item.href}>
-            <p className="text-sm opacity-80">{item.desc}</p>
+          <CardService 
+           key={index}
+           title={item.title}
+           href={item.href}>
+          <p className="text-sm opacity-80">{item.desc}</p>
           </CardService>
         ))}
       </div>

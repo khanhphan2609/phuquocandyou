@@ -1,0 +1,116 @@
+.cardSocialsProof .parent {
+  width: 300px;
+  padding: 10px;
+  perspective: 1000px;
+}
+
+.cardSocialsProof .card {
+  position: relative;
+  padding: 100px 30px 30px 30px;
+  border: 3px solid rgb(255, 255, 255);
+  transform-style: preserve-3d;
+      background: linear-gradient(180deg, var(--blue-normal), var(--blue-darker));
+    color: var(--blue-light);
+  width: 100%;
+  
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  min-height: 350px;
+}
+
+.cardSocialsProof .card:hover {
+  transform: rotate3d(0.5, 1, 0, 30deg);
+  box-shadow: rgba(48, 173, 205, 0.5) 0px 30px 30px -10px;
+}
+
+.cardSocialsProof .content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  order: 2;
+}
+
+.cardSocialsProof .card-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  align-self: center;
+}
+
+.cardSocialsProof .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.cardSocialsProof .card-content {
+  font-size: 0.95rem;
+  color: var(--white);
+  line-height: 1.6;
+}
+
+.cardSocialsProof .see-more {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--blue-normal);
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+/*content box see more button hover effect*/
+.content-box .see-more {
+    cursor: pointer;
+    margin-top: 1rem;
+    display: inline-block;
+    font-weight: 900;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--blue-normal);
+    background: var(--white);
+    padding: 0.5rem 0.7rem;
+    transition: all 0.5s ease-in-out;
+    transform: translate3d(0px, 0px, 20px);
+    border: none;
+  }
+
+  .content-box .see-more:hover {
+    transform: translate3d(0px, -5px, 60px);
+    box-shadow: rgba(48, 173, 205, 0.4) 0px 10px 20px;
+    background-color: var(--blue-light-hover);
+  }
+
+.cardSocialsProof .date-box {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 2px solid var(--white);
+  padding: 10px 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+.cardSocialsProof .month {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--white);
+  letter-spacing: 1.5px;
+}
+
+.cardSocialsProof .date {
+  font-size: 1.85rem;
+  font-weight: bold;
+  color: var(--white);
+}
