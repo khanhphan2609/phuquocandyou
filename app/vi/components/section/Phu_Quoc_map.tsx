@@ -1,97 +1,232 @@
-import "./Phu_Quoc_map.css";
-import { Button } from "../ui/Button";
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import { Button } from "../ui/Button";
+
+type RegionKey =
+  | "ganhDau"
+  | "baiThom"
+  | "cuaCan"
+  | "duongDong"
+  | "hamNinh"
+  | "baiVong"
+  | "baiSao"
+  | "anThoi"
+  | "anThoiIslands";
+
+type RegionData = {
+  title: string;
+  desc: string;
+  gridIndex: number;
+  images: string[];
+};
+
+const regions: Record<RegionKey, RegionData> = {
+  // giữ nguyên data của bạn
+  // (mình không rút gọn để bạn copy paste trực tiếp)
+  ganhDau: {
+    title: "Gành Dầu",
+    desc: "Khu vực phía Tây Bắc Phú Quốc, nổi tiếng với bãi biển hoang sơ.",
+    gridIndex: 1,
+    images: [
+      "/images/regions_img/ganh-dau/ganh-dau-1.png",
+      "/images/regions_img/ganh-dau/ganh-dau-2.png",
+      "/images/regions_img/ganh-dau/ganh-dau-3.png",
+    ],
+  },
+  baiThom: {
+    title: "Bãi Thơm",
+    desc: "Khu vực phía Đông Bắc với nhiều cảnh quan thiên nhiên đẹp.",
+    gridIndex: 2,
+    images: [
+      "/images/regions_img/bai-thom/bai-thom-1.png",
+      "/images/regions_img/bai-thom/bai-thom-2.png",
+      "/images/regions_img/bai-thom/bai-thom-3.png",
+    ],
+  },
+  cuaCan: {
+    title: "Cửa Cạn",
+    desc: "Nơi có làng chài truyền thống và bãi biển yên bình.",
+    gridIndex: 3,
+    images: [
+      "/images/regions_img/cua-can/cua-can-1.png",
+      "/images/regions_img/cua-can/cua-can-2.png",
+      "/images/regions_img/cua-can/cua-can-3.png",
+    ],
+  },
+  duongDong: {
+    title: "Dương Đông",
+    desc: "Trung tâm hành chính và du lịch của Phú Quốc.",
+    gridIndex: 4,
+    images: [
+      "/images/regions_img/duong-dong/duong-dong-1.png",
+      "/images/regions_img/duong-dong/duong-dong-2.png",
+      "/images/regions_img/duong-dong/duong-dong-3.png",
+    ],
+  },
+  hamNinh: {
+    title: "Hàm Ninh",
+    desc: "Làng chài nổi tiếng với hải sản tươi sống.",
+    gridIndex: 5,
+    images: [
+      "/images/regions_img/ham-ninh/ham-ninh-1.png",
+      "/images/regions_img/ham-ninh/ham-ninh-2.png",
+      "/images/regions_img/ham-ninh/ham-ninh-3.png",
+    ],
+  },
+  baiVong: {
+    title: "Bãi Vòng",
+    desc: "Khu vực có cảng tàu và bãi biển đẹp.",
+    gridIndex: 6,
+    images: [
+      "/images/regions_img/bai-vong/bai-vong-1.png",
+      "/images/regions_img/bai-vong/bai-vong-2.png",
+      "/images/regions_img/bai-vong/bai-vong-3.png",
+    ],
+  },
+  baiSao: {
+    title: "Bãi Sao",
+    desc: "Một trong những bãi biển đẹp nhất Phú Quốc.",
+    gridIndex: 7,
+    images: [
+      "/images/regions_img/bai-sao/bai-sao-1.png",
+      "/images/regions_img/bai-sao/bai-sao-2.png",
+      "/images/regions_img/bai-sao/bai-sao-3.png",
+    ],
+  },
+  anThoi: {
+    title: "An Thới",
+    desc: "Thị trấn phía Nam đảo, cửa ngõ ra quần đảo An Thới.",
+    gridIndex: 8,
+    images: [
+      "/images/regions_img/an-thoi/an-thoi-1.png",
+      "/images/regions_img/an-thoi/an-thoi-2.png",
+      "/images/regions_img/an-thoi/an-thoi-3.png",
+    ],
+  },
+  anThoiIslands: {
+    title: "Quần đảo An Thới",
+    desc: "Gồm nhiều đảo nhỏ nổi tiếng với hoạt động snorkeling và lặn biển.",
+    gridIndex: 9,
+    images: [
+      "/images/regions_img/an-thoi-islands/an-thoi-islands-1.png",
+      "/images/regions_img/an-thoi-islands/an-thoi-islands-2.png",
+      "/images/regions_img/an-thoi-islands/an-thoi-islands-3.png",
+    ],
+  },
+};
 
 export default function PhuQuocMap() {
+  const [activeRegion, setActiveRegion] =
+    useState<RegionKey>("ganhDau");
+
   return (
     <section className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Title */}
-        <h1 className="text-center text-4xl font-bold text-gray-800 mb-16">
-          Điểm đến theo khu vực
+        <h1
+          className="
+  text-center
+  text-2xl md:text-3xl
+  font-extrabold
+  uppercase
+  tracking-widest
+  mb-10
+  text-[var(--primary)]
+"
+        >
+          Các Địa Điểm Nổi Bật Ở Phú Quốc
         </h1>
 
-        {/* Tab Navigation */}
+        {/* TAB NAVIGATION */}
         <div className="flex justify-center mb-20">
           <div className="bg-gray-100 rounded-full px-8 py-4 flex gap-8 shadow-md flex-wrap md:flex-nowrap">
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              North
-            </button>
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              Central
-            </button>
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              South
-            </button>
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              East
-            </button>
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              North East
-            </button>
-            <button className="pb-2 font-semibold text-gray-700 border-b-4 border-transparent hover:text-[var(--primary)] hover:border-[var(--primary)] whitespace-nowrap transition-colors duration-300">
-              West
-            </button>
+            {(Object.keys(regions) as RegionKey[]).map((key) => (
+              <button
+                key={key}
+                onClick={() => setActiveRegion(key)}
+                className={`pb-2 font-semibold border-b-4 whitespace-nowrap transition-all duration-300
+                  ${
+                    activeRegion === key
+                      ? "text-[var(--blue-normal)] border-[var(--blue-normal)]"
+                      : "text-gray-700 border-transparent hover:text-[var(--blue-normal-hover)] hover:border-[var(--blue-normal-hover)]"
+                  }`}
+              >
+                {regions[key].title}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Content Area */}
+        {/* CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Map Image */}
+
+          {/* MAP */}
           <div className="flex justify-center">
-            <div className="bg-gray-200 rounded-lg p-8 w-full aspect-square flex items-center justify-center">
-              <p className="text-gray-500 text-center font-semibold">
-                [Map Image]
-              </p>
+            <div className="w-full aspect-square">
+              <svg viewBox="0 0 300 300" className="w-full h-full">
+                {[...Array(9)].map((_, i) => {
+                  const x = (i % 3) * 100;
+                  const y = Math.floor(i / 3) * 100;
+
+                  const isActive =
+                    regions[activeRegion].gridIndex === i + 1;
+
+                  return (
+                    <path
+                      key={i}
+                      d={`M${x} ${y} H${x + 100} V${y + 100} H${x} Z`}
+                      onClick={() => {
+                        const found = (
+                          Object.keys(regions) as RegionKey[]
+                        ).find(
+                          (key) =>
+                            regions[key].gridIndex === i + 1
+                        );
+                        if (found) setActiveRegion(found);
+                      }}
+                      className={`cursor-pointer transition-all duration-300
+                        ${
+                          isActive
+                            ? "fill-[var(--blue-normal)]"
+                            : "fill-gray-300 hover:fill-[var(--blue-normal-hover)]"
+                        }`}
+                    />
+                  );
+                })}
+              </svg>
             </div>
           </div>
 
-          {/* Right: Description */}
+          {/* RIGHT CONTENT */}
           <div className="space-y-6">
-            <h2 className="text-5xl font-bold text-yellow-500">
-              South
+            <h2 className="text-5xl font-bold text-[var(--blue-dark)]">
+              {regions[activeRegion].title}
             </h2>
+
             <p className="text-gray-700 text-lg leading-relaxed">
-              The South contains many beautiful beaches and islands in the Gulf of Thailand and the Andaman Sea. Well-known tourist destinations are Phuket Province, Ko Samui, Ko Phi Phi, Ko Lipe, and Ko Tao.
+              {regions[activeRegion].desc}
             </p>
 
-            {/* Image Cards Grid */}
+            {/* Image Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="relative h-80 rounded-lg overflow-hidden bg-gray-300 flex items-end justify-center group cursor-pointer">
-                <Image
-                  src="/images/region/ko-samui.jpg"
-                  alt="Ko Samui"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-4">
-                  <h3 className="text-white font-bold text-lg">Ko Samui</h3>
+              {regions[activeRegion].images.map((img, index) => (
+                <div
+                  key={index}
+                  className="relative h-64 rounded-lg overflow-hidden bg-gray-300 group cursor-pointer"
+                >
+                  <Image
+                    src={img}
+                    alt={regions[activeRegion].title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end justify-center p-4">
+                    <h3 className="text-white font-semibold">
+                      {regions[activeRegion].title}
+                    </h3>
+                  </div>
                 </div>
-              </div>
-
-              <div className="relative h-80 rounded-lg overflow-hidden bg-gray-300 flex items-end justify-center group cursor-pointer">
-                <Image
-                  src="/images/region/krabi.jpg"
-                  alt="Krabi"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-4">
-                  <h3 className="text-white font-bold text-lg">Krabi</h3>
-                </div>
-              </div>
-
-              <div className="relative h-80 rounded-lg overflow-hidden bg-gray-300 flex items-end justify-center group cursor-pointer">
-                <Image
-                  src="/images/region/phuket.jpg"
-                  alt="Phuket"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-end justify-center p-4">
-                  <h3 className="text-white font-bold text-lg">Phuket</h3>
-                </div>
-              </div>
+              ))}
             </div>
 
             <Button variant="primary" size="lg">
