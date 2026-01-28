@@ -13,15 +13,14 @@ import HeroWithOrbs from './components/section/HeroWithOrbs'
 
 export default function HomeVi(){
     return (
-        <Wrapper>
+        <>
             <Header />
             {/* <Socials /> */}
             <HeroWithOrbs />
             <PhuQuocMap />
             <Services />
-            <SocialsProof />
-            
+            {/* <SocialsProof /> */}
             <Footer />
-        </Wrapper>
+        </>
     )
 }

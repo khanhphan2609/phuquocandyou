@@ -40,26 +40,25 @@ export default function Services() {
         Dịch vụ của chúng tôi
       </h1>
 
-      <div
-        className="
-        mx-8
-        max-w-full
-        grid gap-6
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-4
-        place-items-center
-      "
-      >
-        {SERVICES.map((item, index) => (
-          <CardService 
-           key={index}
-           title={item.title}
-           href={item.href}>
-          <p className="text-sm opacity-80">{item.desc}</p>
-          </CardService>
-        ))}
+      <div className="mx-6">
+        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar
+                  sm:grid sm:grid-cols-2 
+                  lg:grid-cols-4 sm:overflow-visible">
+
+          {SERVICES.map((item, index) => (
+            <div
+              key={index}
+              className="min-w-[280px] snap-start sm:min-w-0"
+            >
+              <CardService title={item.title} href={item.href}>
+                <p className="text-sm opacity-80">{item.desc}</p>
+              </CardService>
+            </div>
+          ))}
+
+        </div>
       </div>
+
     </section>
   );
 }

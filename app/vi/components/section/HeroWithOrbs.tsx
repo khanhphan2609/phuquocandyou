@@ -1,8 +1,16 @@
 "use client";
-
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
-import { Waves, Sun, Anchor, Users, Briefcase } from "lucide-react";
+import {
+  SunIcon,
+  AnchorIcon,
+  UsersIcon,
+  BriefcaseIcon,
+  HomeIcon,
+  RealEstateIconAlt,
+} from "../ui/Icons";
+
 
 type TabType =
   | "HOME"
@@ -16,32 +24,32 @@ const ITEMS: {
   title: string;
   details: string[];
 }[] = [
-  {
-    id: "HOME",
-    title: "TRANG CHỦ",
-    details: ["Thiên Đường Đảo Ngọc", "Trung Tâm Du Lịch"],
-  },
-  {
-    id: "TRAVEL",
-    title: "TRẢI NGHIỆM",
-    details: ["VinWonders", "Cáp Treo Hòn Thơm", "Tour 4 Đảo"],
-  },
-  {
-    id: "REAL_ESTATE",
-    title: "BẤT ĐỘNG SẢN",
-    details: ["Biệt Thự Biển", "Shophouse Địa Trung Hải"],
-  },
-  {
-    id: "COMMUNITY",
-    title: "NHỊP SỐNG",
-    details: ["Văn Hóa Địa Phương", "Lễ Hội Biển"],
-  },
-  {
-    id: "CAREERS",
-    title: "SỰ NGHIỆP",
-    details: ["Cơ Hội Việc Làm", "Môi Trường Chuyên Nghiệp"],
-  },
-];
+    {
+      id: "HOME",
+      title: "TRANG CHỦ",
+      details: ["Thiên Đường Đảo Ngọc", "Trung Tâm Du Lịch"],
+    },
+    {
+      id: "TRAVEL",
+      title: "TRẢI NGHIỆM",
+      details: ["VinWonders", "Cáp Treo Hòn Thơm", "Tour 4 Đảo"],
+    },
+    {
+      id: "REAL_ESTATE",
+      title: "BẤT ĐỘNG SẢN",
+      details: ["Biệt Thự Biển", "Shophouse Địa Trung Hải"],
+    },
+    {
+      id: "COMMUNITY",
+      title: "NHỊP SỐNG",
+      details: ["Văn Hóa Địa Phương", "Lễ Hội Biển"],
+    },
+    {
+      id: "CAREERS",
+      title: "SỰ NGHIỆP",
+      details: ["Cơ Hội Việc Làm", "Môi Trường Chuyên Nghiệp"],
+    },
+  ];
 
 const CONTENT_DATA: Record<
   TabType,
@@ -106,12 +114,13 @@ const CONTENT_DATA: Record<
 };
 
 const spiral = [
-  { x: 0, y: 0, size: 320 },
-  { x: 240, y: -160, size: 180 },
-  { x: 300, y: 120, size: 160 },
-  { x: 60, y: 300, size: 160 },
-  { x: -220, y: 180, size: 160 },
+  { x: 0, y: 0, size: 260 },
+  { x: 180, y: -120, size: 150 },
+  { x: 220, y: 100, size: 140 },
+  { x: 40, y: 220, size: 140 },
+  { x: -170, y: 150, size: 140 },
 ];
+
 
 export default function HeroWithOrbs() {
   const [current, setCurrent] = useState<TabType>("HOME");
@@ -126,17 +135,18 @@ export default function HeroWithOrbs() {
   const getIcon = (id: TabType) => {
     switch (id) {
       case "HOME":
-        return <Waves size={28} />;
+        return <HomeIcon size={28} />;
       case "TRAVEL":
-        return <Sun size={28} />;
+        return <SunIcon size={28} />;
       case "REAL_ESTATE":
-        return <Anchor size={28} />;
+        return <RealEstateIconAlt size={28} />;
       case "COMMUNITY":
-        return <Users size={28} />;
+        return <UsersIcon size={28} />;
       case "CAREERS":
-        return <Briefcase size={28} />;
+        return <BriefcaseIcon size={28} />;
     }
   };
+
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden text-white flex items-center justify-center">
@@ -152,10 +162,12 @@ export default function HeroWithOrbs() {
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
       </div>
 
-      <div className="max-w-[1600px] w-full px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="max-w-[1400px] w-full mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-center gap-16">
+
 
         {/* ================= LEFT CARD ================= */}
-        <div className="w-full lg:w-[520px]">
+        <div className="w-full lg:w-[520px] flex-shrink-0">
+
           <div className="rounded-[40px] overflow-hidden bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl">
 
             {/* IMAGE DYNAMIC */}
@@ -176,17 +188,21 @@ export default function HeroWithOrbs() {
               <p className="text-blue-100 border-l-2 border-cyan-400 pl-4">
                 {data.description}
               </p>
-
-              <button className="w-full py-4 rounded-2xl font-bold uppercase tracking-widest bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition">
+              <Link
+                href="/explore"
+                className="block w-full py-4 rounded-2xl font-bold uppercase tracking-widest text-center bg-gradient-to-r from-cyan-400 to-blue-500 hover:scale-105 transition"
+              >
                 {data.tag}
-              </button>
+              </Link>
+
             </div>
           </div>
         </div>
 
         {/* ================= RIGHT ORBS ================= */}
-        <div className="hidden lg:flex flex-1 items-center justify-center relative min-h-[700px]">
-          <div className="relative w-[800px] h-[800px]">
+        <div className="hidden lg:flex flex-1 items-center justify-center relative min-h-[650px]">
+          <div className="relative w-[560px] h-[560px]">
+
 
             {ordered.map((id, index) => {
               const item = ITEMS.find((i) => i.id === id)!;
@@ -209,11 +225,10 @@ export default function HeroWithOrbs() {
                 >
                   <div
                     className={`relative w-full h-full rounded-full flex flex-col items-center justify-center text-center transition-all duration-500
-                    ${
-                      isCenter
+                    ${isCenter
                         ? "bg-gradient-to-b from-[#0f2b46] to-[#081b2f] shadow-[0_0_120px_rgba(34,211,238,0.5)]"
                         : "bg-white/5 hover:scale-110"
-                    }`}
+                      }`}
                   >
                     {isCenter ? (
                       <>

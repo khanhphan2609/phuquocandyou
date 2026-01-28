@@ -138,24 +138,31 @@ export default function PhuQuocMap() {
         </h1>
 
         {/* TAB NAVIGATION */}
-        <div className="flex justify-center mb-20">
-          <div className="bg-gray-100 rounded-full px-8 py-4 flex gap-8 shadow-md flex-wrap md:flex-nowrap">
-            {(Object.keys(regions) as RegionKey[]).map((key) => (
-              <button
-                key={key}
-                onClick={() => setActiveRegion(key)}
-                className={`pb-2 font-semibold border-b-4 whitespace-nowrap transition-all duration-300
-                  ${
-                    activeRegion === key
-                      ? "text-[var(--blue-normal)] border-[var(--blue-normal)]"
-                      : "text-gray-700 border-transparent hover:text-[var(--blue-normal-hover)] hover:border-[var(--blue-normal-hover)]"
-                  }`}
-              >
-                {regions[key].title}
-              </button>
-            ))}
+        <div className="flex justify-center mb-12 md:mb-20">
+
+          <div className="bg-gray-100 rounded-full px-4 md:px-8 py-3 md:py-4 shadow-md w-full max-w-5xl">
+
+            <div className="overflow-x-auto no-scrollbar">
+              <div className="flex gap-6 md:gap-8 w-max">
+                {(Object.keys(regions) as RegionKey[]).map((key) => (
+                  <button
+                    key={key}
+                    onClick={() => setActiveRegion(key)}
+                    className={`pb-2 font-semibold border-b-4 whitespace-nowrap transition-all duration-300
+              ${activeRegion === key
+                        ? "text-[var(--blue-normal)] border-[var(--blue-normal)]"
+                        : "text-gray-700 border-transparent hover:text-[var(--blue-normal-hover)] hover:border-[var(--blue-normal-hover)]"
+                      }`}
+                  >
+                    {regions[key].title}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
+
+
 
         {/* CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -185,10 +192,9 @@ export default function PhuQuocMap() {
                         if (found) setActiveRegion(found);
                       }}
                       className={`cursor-pointer transition-all duration-300
-                        ${
-                          isActive
-                            ? "fill-[var(--blue-normal)]"
-                            : "fill-gray-300 hover:fill-[var(--blue-normal-hover)]"
+                        ${isActive
+                          ? "fill-[var(--blue-normal)]"
+                          : "fill-gray-300 hover:fill-[var(--blue-normal-hover)]"
                         }`}
                     />
                   );
@@ -208,26 +214,38 @@ export default function PhuQuocMap() {
             </p>
 
             {/* Image Grid */}
-            <div className="grid grid-cols-3 gap-4">
-              {regions[activeRegion].images.map((img, index) => (
-                <div
-                  key={index}
-                  className="relative h-64 rounded-lg overflow-hidden bg-gray-300 group cursor-pointer"
-                >
-                  <Image
-                    src={img}
-                    alt={regions[activeRegion].title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-end justify-center p-4">
-                    <h3 className="text-white font-semibold">
-                      {regions[activeRegion].title}
-                    </h3>
-                  </div>
-                </div>
-              ))}
+            <div className="grid grid-cols-3 grid-rows-2 gap-4 h-[400px]">
+              {/* Big image */}
+              <div className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden group">
+                <Image
+                  src={regions[activeRegion].images[0]}
+                  alt=""
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Small 1 */}
+              <div className="relative rounded-2xl overflow-hidden group">
+                <Image
+                  src={regions[activeRegion].images[1]}
+                  alt=""
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Small 2 */}
+              <div className="relative rounded-2xl overflow-hidden group">
+                <Image
+                  src={regions[activeRegion].images[2]}
+                  alt=""
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
             </div>
+
 
             <Button variant="primary" size="lg">
               View More

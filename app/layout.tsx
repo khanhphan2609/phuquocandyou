@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+import Header from "@/app/vi/components/layout/Header";
+
+
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-primary",
@@ -20,13 +23,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="vi">
       <body className={`${beVietnamPro.variable} antialiased`}>
-        {children}
+        <main className="bg-[var(--blue-darker)]">
+          {children}
+        </main>
       </body>
     </html>
   );
