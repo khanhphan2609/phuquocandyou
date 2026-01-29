@@ -2,10 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import {
   MenuIcon,
   CloseIcon,
-  UsersIcon,
   SearchIcon,
   FaUserCircleIcon,
 } from "../ui/Icons";
@@ -18,10 +18,23 @@ const MENU_ITEMS = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [lang, setLang] = useState<"VI" | "EN">("VI");
   const [langOpen, setLangOpen] = useState(false);
+
+  // derive lang from pathname to avoid calling setState inside useEffect
+  const lang = pathname?.startsWith("/en") ? ("EN" as const) : ("VI" as const);
+
+  const switchLang = (l: "VI" | "EN") => {
+    const p = pathname ?? (typeof window !== "undefined" ? window.location.pathname : "/");
+    const base = p.replace(/^\/(?:vi|en)/, "") || "/";
+    const target = base === "/" ? `/${l.toLowerCase()}` : `/${l.toLowerCase()}${base}`;
+    setLangOpen(false);
+    router.push(target);
+  };
+
 
   return (
     <>
@@ -42,15 +55,23 @@ export default function Header() {
         <nav className="hidden lg:flex flex-1 justify-center">
           <div className="h-16 bg-[#001524]/40 backdrop-blur-md border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex items-center px-10 hover:border-cyan-400/50 transition-all">
             <div className="flex gap-12 items-center text-xs lg:text-sm font-black uppercase tracking-[0.4em] text-white">
-              {MENU_ITEMS.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="nav-link hover:text-cyan-300 transition-all drop-shadow-md relative group"
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {MENU_ITEMS.map((item, index) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname?.startsWith(item.href));
+                return (
+                  <Link
+                    key={index}
+                    href={item.href}
+                    className={`nav-link hover:text-cyan-300 transition-all drop-shadow-md relative group ${
+                      isActive ? "text-cyan-300 font-extrabold" : ""
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
               <div className="h-4 w-[1px] bg-white/20 mx-2"></div>
               <button className="px-8 py-2.5 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-xs lg:text-sm font-black uppercase tracking-[0.2em] rounded-full hover:shadow-[0_0_20px_rgba(34,211,238,0.6)] hover:scale-105 transition-all">
                 Liên hệ
@@ -104,10 +125,7 @@ export default function Header() {
       shadow-2xl overflow-hidden"
               >
                 <button
-                  onClick={() => {
-                    setLang("EN");
-                    setLangOpen(false);
-                  }}
+                  onClick={() => switchLang("EN")}
                   className="group flex items-center gap-3 p-2 m-2 bg-cyan-500/10 backdrop-blur-3xl border border-cyan-400/30 rounded-full hover:bg-cyan-500/20 transition-all shadow-lg w-[calc(100%-1rem)]"
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">
@@ -126,9 +144,9 @@ export default function Header() {
             </div>
 
             <div className="flex flex-col items-start">
-              <span className="text-[11px] font-black uppercase tracking-[0.1em] text-white">
+              {/* <span className="text-[11px] font-black uppercase tracking-[0.1em] text-white">
                 Member
-              </span>
+              </span> */}
               <span className="text-[9px] font-bold text-cyan-300 uppercase tracking-[0.1em]">
                 Đăng nhập
               </span>
@@ -188,16 +206,24 @@ export default function Header() {
 
           <div className="h-[1px] bg-white/20 my-2"></div>
 
-          {MENU_ITEMS.map((item, index) => (
-            <Link
-              key={index}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-sm font-bold uppercase tracking-[0.2em] hover:text-cyan-400 transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {MENU_ITEMS.map((item, index) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname?.startsWith(item.href));
+            return (
+              <Link
+                key={index}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-white text-sm font-bold uppercase tracking-[0.2em] transition-colors ${
+                  isActive ? "text-cyan-300" : "hover:text-cyan-400"
+                }`}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
 
           <div className="h-[1px] bg-white/20 my-2"></div>
 
@@ -217,10 +243,7 @@ export default function Header() {
             {langOpen && (
               <div className="absolute left-0 top-full mt-2 w-full rounded-2xl border border-white/10 bg-[#001524]/95 backdrop-blur-2xl shadow-2xl overflow-hidden z-20">
                 <button
-                  onClick={() => {
-                    setLang("EN");
-                    setLangOpen(false);
-                  }}
+                  onClick={() => switchLang("EN")}
                   className="w-full group flex items-center gap-4 p-1.5 pr-6 bg-cyan-500/10 backdrop-blur-3xl border border-cyan-400/30 m-2 rounded-full hover:bg-cyan-500/20 transition-all shadow-2xl"
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">

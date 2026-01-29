@@ -1,162 +1,88 @@
 "use client";
 
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import "./Hero.css";
-import HeroModel from "../ui/HeroModel";
-import { motion, type Variants, easeInOut } from "framer-motion";
-import { Button } from "../ui/Button";
-import { FaArrowRight } from "react-icons/fa";
-
-const containerVars: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.25 },
-  },
-};
-
-const itemVars: Variants = {
-  hidden: { y: 14, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.6, ease: easeInOut },
-  },
-};
-
-const buttonVars: Variants = {
-  hidden: {
-    x: -40,
-    opacity: 0,
-  },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      ease: easeInOut,
-
-    },
-  },
-};
+import OrbsContainer from "./OrbsContainer";
+import { CONTENT_DATA } from "./heroConfig";
 
 export default function Hero() {
+  const [currentTab, setCurrentTab] = useState<string>("HOME");
+  const [contentData, setContentData] = useState(CONTENT_DATA.HOME);
+  const [imageKey, setImageKey] = useState(0);
+
+  useEffect(() => {
+    const tabData = CONTENT_DATA[currentTab as keyof typeof CONTENT_DATA];
+    if (tabData) {
+      setContentData(tabData);
+      // Trigger re-animation by changing key
+      setImageKey((prev) => prev + 1);
+    }
+  }, [currentTab]);
+
+  const handleTabChange = (tabId: string) => {
+    setCurrentTab(tabId);
+  };
+
   return (
     <section
       id="Hero"
-      className="relative min-h-[92vh] flex items-center justify-center px-4 mb-20 lg:mb-0"
+      className="flex flex-col lg:flex-row items-center w-full lg:gap-12 px-6 lg:px-16 max-w-[1920px] mx-auto relative z-10 py-10 lg:overflow-hidden"
     >
-      <div
-        className="
-          relative
-          flex flex-col gap-20 md:gap-25 lg:gap-0 lg:flex-row items-center justify-between
-          w-full max-w-[1400px]
-          min-h-[75vh]
-          bg-[var(--blue-light)]
-          rounded-[2.5rem]
-          border border-[var(--blue-normal)]
-          shadow-2xl shadow-[var(--blue-dark)]
-          mt-4 lg:mt-0
-        "
-      >
-        {/* LEFT */}
-        <div className="flex flex-col gap-8 max-w-xl pt-8 lg:pt-0 lg:pl-8 ml-10">
-          {/* TITLE */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVars}
-            className="z-10 -mt-6 lg:-mt-10"
-          >
-            <h1
-              className="
-    flex flex-row items-center
-    whitespace-nowrap
-    text-[7.5vw] sm:text-[3rem] md:text-[4rem] lg:text-[5rem]
-    font-[1000]
-    tracking-tight
-    uppercase
-    leading-none
-    select-none
-  "
+      {/* Left Card */}
+      <div className="w-full max-w-md lg:max-w-none lg:w-[500px] xl:w-[580px] flex-shrink-0 lg:mr-auto z-20 mb-8 lg:mb-0">
+        <div className="relative rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,21,36,0.5)] bg-white/10 backdrop-blur-2xl border border-white/20 aspect-[4/5.2] flex flex-col hover:border-white/40 transition-all group">
+          {/* Image Section */}
+          <div className="relative w-full h-[48%] shrink-0 overflow-hidden">
+            <img
+              key={imageKey}
+              id="content-image"
+              src={contentData.image}
+              className="w-full h-full object-cover transition-all duration-1000 animate-in fade-in zoom-in-105"
+              alt="Phú Quốc"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#001524]/80 via-transparent to-transparent"></div>
+            <div
+              id="content-tag"
+              className={`absolute top-8 left-8 px-5 py-2 rounded-full backdrop-blur-xl border border-white/30 text-[11px] font-black uppercase tracking-[0.3em] text-white bg-gradient-to-r ${contentData.themeColor}`}
             >
-              <motion.span
-                variants={itemVars}
-                className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-10"
-                style={{
-                  backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                  WebkitBackgroundClip: "text",
-                }}
-              >
-                Phú&nbsp;
-              </motion.span>
+              {contentData.tag}
+            </div>
+          </div>
 
-              <motion.span
-                variants={itemVars}
-                className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-10"
-                style={{
-                  backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                  WebkitBackgroundClip: "text",
-                }}
-              >
-                Quốc&nbsp;
-              </motion.span>
-
-              <motion.span
-                variants={itemVars}
-                className="inline-block bg-clip-text text-transparent bg-cover bg-no-repeat pt-10"
-                style={{
-                  backgroundImage: "url('/images/thumnails/bg-title.webp')",
-                  WebkitBackgroundClip: "text",
-                }}
-              >
-                &amp; You
-              </motion.span>
-            </h1>
-
-            <motion.p
-              variants={itemVars}
-              className="
-                mt-3
-                text-[var(--blue-dark)]
-                text-[12px] lg:text-l
-                tracking-[0.2em]
-                font-light
-                uppercase
-              "
+          {/* Content Section */}
+          <div className="p-8 lg:p-12 flex flex-col flex-1">
+            <h2
+              id="content-title"
+              className="text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight drop-shadow-2xl italic"
             >
-              Kết nối, chia sẻ và khám phá Phú Quốc cùng cộng đồng đam mê du
-              lịch, ẩm thực và trải nghiệm địa phương.
-            </motion.p>
-          </motion.div>
+              {contentData.title}
+            </h2>
 
-          {/* ACTIONS */}
-          <div className="flex flex-wrap items-center gap-6">
-            <motion.div
-              variants={buttonVars}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button>
-                <Link
-                  href="https://www.facebook.com/profile.php?id=61585377338599"
-                  target="_blank"
-                  rel="noopener noreferrer"
+            <div className="relative mb-8 flex-1">
+              <div id="default-description">
+                <p
+                  id="content-description"
+                  className="text-blue-50/90 text-xl xl:text-2xl leading-relaxed font-medium drop-shadow-md border-l-2 border-cyan-400 pl-6"
                 >
-                  <span className="flex items-center gap-2">
-                    Tham gia cộng đồng ngay
-                    <FaArrowRight className="text-sm" />
-                  </span>
-                </Link>
-              </Button>
-            </motion.div>
+                  {contentData.description}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-auto space-y-4">
+              <button
+                id="explore-btn"
+                className={`group w-full py-5 text-white font-black text-[11px] lg:text-xs uppercase tracking-[0.4em] rounded-[1.5rem] shadow-2xl flex items-center justify-center gap-4 hover:scale-[1.02] transition-all bg-gradient-to-r ${contentData.themeColor}`}
+              >
+                <span id="btn-text">{currentTab === "HOME" ? "Bắt đầu hành trình" : "Khám phá chi tiết"}</span>
+              </button>
+            </div>
           </div>
         </div>
-        {/* RIGHT */}
-        <HeroModel />
       </div>
+
+      {/* Right Orbs */}
+      <OrbsContainer currentTab={currentTab} onTabChange={handleTabChange} />
     </section>
   );
 }
