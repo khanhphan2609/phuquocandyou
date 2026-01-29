@@ -7,7 +7,7 @@ import Hero from './components/section/Hero'
 import Services from './components/section/Services'
 import SocialsProof from './components/section/SocialsProof'
 import Partners from './components/section/Partners'
-import PhuQuocMap from './components/section/Phu_Quoc_map'
+import PhuQuocMap from './components/section/PhuQuocMap'
 import HeroWithOrbs from './components/section/HeroWithOrbs'
 
 

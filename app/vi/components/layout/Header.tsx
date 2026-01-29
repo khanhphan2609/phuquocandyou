@@ -2,13 +2,9 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import "./Header.css";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  MenuIcon,
-  CloseIcon,
-  SearchIcon,
-  FaUserCircleIcon,
-} from "../ui/Icons";
+import { MenuIcon, CloseIcon, SearchIcon, FaUserCircleIcon } from "../ui/Icons";
 
 const MENU_ITEMS = [
   { label: "Điểm đến", href: "/" },
@@ -28,13 +24,15 @@ export default function Header() {
   const lang = pathname?.startsWith("/en") ? ("EN" as const) : ("VI" as const);
 
   const switchLang = (l: "VI" | "EN") => {
-    const p = pathname ?? (typeof window !== "undefined" ? window.location.pathname : "/");
+    const p =
+      pathname ??
+      (typeof window !== "undefined" ? window.location.pathname : "/");
     const base = p.replace(/^\/(?:vi|en)/, "") || "/";
-    const target = base === "/" ? `/${l.toLowerCase()}` : `/${l.toLowerCase()}${base}`;
+    const target =
+      base === "/" ? `/${l.toLowerCase()}` : `/${l.toLowerCase()}${base}`;
     setLangOpen(false);
     router.push(target);
   };
-
 
   return (
     <>
@@ -63,12 +61,31 @@ export default function Header() {
                   <Link
                     key={index}
                     href={item.href}
-                    className={`nav-link hover:text-cyan-300 transition-all drop-shadow-md relative group ${
-                      isActive ? "text-cyan-300 font-extrabold" : ""
-                    }`}
                     aria-current={isActive ? "page" : undefined}
+                    className={`
+    relative inline-block
+    text-white uppercase tracking-[0.4em]
+    transition-colors duration-300
+    hover:text-cyan-300
+    ${isActive ? "text-cyan-300 font-extrabold" : ""}
+    
+    after:content-['']
+    after:absolute
+    after:left-1/2
+    after:-bottom-2
+    after:h-[3px]
+    after:w-[70%]
+    after:bg-cyan-400
+    after:rounded-full
+    after:-translate-x-1/2
+    after:scale-x-0
+    after:transition-transform
+    after:duration-300
+    hover:after:scale-x-100
+    aria-[current=page]:after:scale-x-100
+  `}
                   >
-                    {item.label}
+                    <span className="px-6">{item.label}</span>
                   </Link>
                 );
               })}
@@ -131,7 +148,9 @@ export default function Header() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">
                     <span className="text-white text-xs">🇬🇧</span>
                   </div>
-                  <span className="text-[9px] font-bold uppercase tracking-wider text-cyan-300 flex-1">EN</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-cyan-300 flex-1">
+                    EN
+                  </span>
                 </button>
               </div>
             )}
@@ -152,7 +171,6 @@ export default function Header() {
               </span>
             </div>
           </button>
-
         </div>
 
         {/* Mobile Right Section */}
@@ -236,8 +254,14 @@ export default function Header() {
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">
                 <span className="text-white text-sm">🇻🇳</span>
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">VI</span>
-              <span className={`text-cyan-300 transition-transform duration-300 ml-auto ${langOpen ? "rotate-180" : ""}`}>▾</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+                VI
+              </span>
+              <span
+                className={`text-cyan-300 transition-transform duration-300 ml-auto ${langOpen ? "rotate-180" : ""}`}
+              >
+                ▾
+              </span>
             </button>
 
             {langOpen && (
@@ -249,7 +273,9 @@ export default function Header() {
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">
                     <span className="text-white text-sm">🇬🇧</span>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">EN</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-300">
+                    EN
+                  </span>
                 </button>
               </div>
             )}
@@ -262,7 +288,9 @@ export default function Header() {
             </div>
             <div className="flex flex-col items-start">
               {/* <span className="text-[11px] font-black uppercase tracking-[0.1em] text-white">Xin chào, Member</span> */}
-              <span className="text-[9px] font-bold text-cyan-300 uppercase tracking-[0.1em]">Đăng nhập</span>
+              <span className="text-[9px] font-bold text-cyan-300 uppercase tracking-[0.1em]">
+                Đăng nhập
+              </span>
             </div>
           </button>
 

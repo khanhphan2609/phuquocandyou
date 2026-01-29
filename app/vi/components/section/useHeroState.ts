@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { CONTENT_DATA } from "./heroConfig";
 
 type HeroStateListener = (state: HeroState) => void;
 
@@ -39,30 +40,18 @@ export const useHeroState = () => {
 };
 
 export const useHeroContent = (tabId: string) => {
-  const [contentImage, setContentImage] = useState<string>("");
-  const [contentTag, setContentTag] = useState<string>("");
-  const [contentTitle, setContentTitle] = useState<string>("");
-  const [contentDescription, setContentDescription] = useState<string>("");
-  const [btnText, setBtnText] = useState<string>("");
-  const [themeColor, setThemeColor] = useState<string>("");
-
-  useEffect(() => {
-    // This will be updated by parent through props, but we can set defaults
-    setContentImage("");
-  }, [tabId]);
+  // Derive content directly from the static CONTENT_DATA to avoid
+  // calling setState synchronously inside effects which can cause
+  // cascading renders. Caller can use returned values directly.
+  const key = tabId as keyof typeof CONTENT_DATA;
+  const data = CONTENT_DATA[key] ?? CONTENT_DATA.HOME;
 
   return {
-    contentImage,
-    contentTag,
-    contentTitle,
-    contentDescription,
-    btnText,
-    themeColor,
-    setContentImage,
-    setContentTag,
-    setContentTitle,
-    setContentDescription,
-    setBtnText,
-    setThemeColor,
+    contentImage: data.image,
+    contentTag: data.tag,
+    contentTitle: data.title,
+    contentDescription: data.description,
+    btnText: tabId === "HOME" ? "Bắt đầu hành trình" : "Khám phá chi tiết",
+    themeColor: data.themeColor,
   };
 };
