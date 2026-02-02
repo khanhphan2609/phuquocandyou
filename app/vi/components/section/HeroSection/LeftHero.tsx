@@ -1,12 +1,6 @@
 "use client";
 
-import Image from "next/image";
-
-type LeftHeroProps = {
-  currentTab: string;
-};
-
-export default function LeftHero({ currentTab }: LeftHeroProps) {
+export default function LeftHero() {
   return (
     <div className="w-full max-w-md lg:max-w-none lg:w-[500px] xl:w-[580px] flex-shrink-0 lg:mr-auto z-20 mb-8 lg:mb-0">
       <div className="relative rounded-[2.5rem] lg:rounded-[3.5rem] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,21,36,0.5)] bg-white/10 backdrop-blur-2xl border border-white/20 aspect-[4/5.2] flex flex-col hover:border-white/40 transition-all group">
@@ -31,7 +25,7 @@ export default function LeftHero({ currentTab }: LeftHeroProps) {
         <div className="p-8 lg:p-12 flex flex-col flex-1">
           <h2
             id="content-title"
-            className="text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight drop-shadow-2xl italic"
+            className="text-4xl lg:text-2xl xl:text-5xl font-black text-white mb-6 leading-[1.1] tracking-tight drop-shadow-2xl italic"
           />
 
           <div className="relative mb-8 flex-1">

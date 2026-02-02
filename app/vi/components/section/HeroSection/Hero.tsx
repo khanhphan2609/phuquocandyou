@@ -17,7 +17,7 @@ export default function Hero() {
       className="flex flex-col lg:flex-row items-center w-full lg:gap-12"
     >
       <BgContainer/>
-      <LeftHero currentTab={currentTab} />
+      <LeftHero/>
       <RightHero orbsRef={orbsRef} />
     </section>
   );

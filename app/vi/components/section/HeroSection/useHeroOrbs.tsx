@@ -112,7 +112,7 @@ const CONTENT_DATA = {
     image:
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop",
     bgImage:
-      "https://images.unsplash.com/photo-1520116467321-f14fca3218ee?q=80&w=2000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop",
     themeColor: "from-cyan-500 via-blue-400 to-sky-300",
     icon: ICON_COMPONENTS.CAREERS,
   },
@@ -172,7 +172,7 @@ export const useHeroOrbs = (
     const data = CONTENT_DATA[tabId as keyof typeof CONTENT_DATA];
     if (!data) return;
 
-    const bgImage = document.getElementById("bg-container") as HTMLElement;
+    const bgImage = document.getElementById("bg-image") as HTMLElement;
     const contentImage = document.getElementById(
       "content-image",
     ) as HTMLImageElement;
