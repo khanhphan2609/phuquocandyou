@@ -121,7 +121,7 @@ export default function PhuQuocMap() {
     useState<RegionKey>("ganhDau");
 
   return (
-    <section className="py-32 bg-white">
+    <section className="bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <h1
           className="

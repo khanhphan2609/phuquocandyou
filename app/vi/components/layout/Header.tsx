@@ -2,15 +2,18 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import "./Header.css";
 import { usePathname, useRouter } from "next/navigation";
 import { MenuIcon, CloseIcon, FaUserCircleIcon } from "../ui/Icons";
 
 const MENU_ITEMS = [
-  { label: "Điểm đến", href: "/" },
-  { label: "Tiện ích", href: "/" },
-  { label: "Tin tức", href: "/" },
-  { label: "Tuyển dụng", href: "/" },
+  { label: "Điểm đến", href: "/", external: false },
+  { label: "Tiện ích", href: "/", external: false },
+  { label: "Tin tức", href: "https://news.phuquocandyou.com", external: true },
+  {
+    label: "Tuyển dụng",
+    href: "https://careers.phuquocandyou.com",
+    external: true,
+  },
 ];
 
 export default function Header() {
@@ -35,7 +38,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full p-4 flex">
+      <header className="fixed top-0 left-0 w-full p-4 flex z-50">
         {/* Logo */}
         <Link href="/">
           <Image
@@ -50,12 +53,13 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex flex-1 justify-center">
-          <div className="h-16 bg-[#001524]/40 border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex items-center px-12 hover:border-cyan-400/50 transition-all">
+          <div className="h-16 bg-[#001524]/40 border border-white/10 backdrop-blur-2xl rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] flex items-center px-12 hover:border-cyan-400/50 transition-all">
             <div className="flex gap-4 items-center text-xs lg:text-sm font-black uppercase tracking-[0.2em] text-[--white]">
               {MENU_ITEMS.map((item, index) => {
                 const isActive =
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname?.startsWith(item.href));
+                  !item.external &&
+                  (pathname === item.href ||
+                    (item.href !== "/" && pathname?.startsWith(item.href)));
                 return (
                   <Link
                     key={index}
@@ -116,7 +120,9 @@ export default function Header() {
         group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)]
         transition-all flex-shrink-0"
               >
-                <span className="text-white text-sm">{lang === "VI" ? "🇻🇳" : "🇬🇧"}</span>
+                <span className="text-white text-sm">
+                  {lang === "VI" ? "🇻🇳" : "🇬🇧"}
+                </span>
               </div>
 
               {/* Text */}
@@ -135,9 +141,7 @@ export default function Header() {
             </button>
 
             {langOpen && (
-              <div
-                className="absolute -right-0 mt-4 w-full bg-transparent overflow-hidden"
-              >
+              <div className="absolute -right-0 mt-4 w-full bg-transparent overflow-hidden">
                 <button
                   onClick={() => switchLang(lang === "VI" ? "EN" : "VI")}
                   className="w-full group flex items-center gap-4 px-2 py-1 bg-cyan-500/10 backdrop-blur-3xl border border-cyan-400/30 rounded-full hover:bg-cyan-500/20 transition-all shadow-2xl cursor-pointer"
@@ -150,7 +154,9 @@ export default function Header() {
         group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)]
         transition-all flex-shrink-0"
                   >
-                    <span className="text-white text-sm">{lang === "VI" ? "🇬🇧" : "🇻🇳"}</span>
+                    <span className="text-white text-sm">
+                      {lang === "VI" ? "🇬🇧" : "🇻🇳"}
+                    </span>
                   </div>
 
                   {/* Text */}
@@ -187,7 +193,9 @@ export default function Header() {
               onClick={() => setLangOpen(!langOpen)}
               className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-all cursor-pointer"
             >
-              <span className="text-white text-sm">{lang === "VI" ? "🇻🇳" : "🇬🇧"}</span>
+              <span className="text-white text-sm">
+                {lang === "VI" ? "🇻🇳" : "🇬🇧"}
+              </span>
             </button>
 
             {langOpen && (
@@ -196,7 +204,9 @@ export default function Header() {
                   onClick={() => switchLang(lang === "VI" ? "EN" : "VI")}
                   className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 hover:shadow-[0_0_15px_rgba(34,211,238,0.6)] transition-all cursor-pointer"
                 >
-                  <span className="text-white text-sm">{lang === "VI" ? "🇬🇧" : "🇻🇳"}</span>
+                  <span className="text-white text-sm">
+                    {lang === "VI" ? "🇬🇧" : "🇻🇳"}
+                  </span>
                 </button>
               </div>
             )}
