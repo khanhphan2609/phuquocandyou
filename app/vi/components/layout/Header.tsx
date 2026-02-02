@@ -40,7 +40,7 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 w-full p-4 flex z-50">
         {/* Logo */}
-        <Link href="/">
+        <Link href="#Hero">
           <Image
             src="/logo.png"
             alt="Phú Quốc & You"
@@ -62,6 +62,7 @@ export default function Header() {
                     (item.href !== "/" && pathname?.startsWith(item.href)));
                 return (
                   <Link
+                    target="_blank"
                     key={index}
                     href={item.href}
                     aria-current={isActive ? "page" : undefined}
