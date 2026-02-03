@@ -84,7 +84,8 @@ export default function PhuQuocMap() {
 
   return (
     <section id="PhuQuocMap" className="z-5">
-      <div   className="
+      <div
+        className="
     grid grid-cols-1 lg:grid-cols-2 items-center
 
     bg-white/5
@@ -92,7 +93,8 @@ export default function PhuQuocMap() {
 py-12 
     rounded-3xl
     border border-white/10
-    shadow-2xl">
+    shadow-2xl"
+      >
         {/* ================= MAP ================= */}
         <div className="flex">
           <svg viewBox="0 0 400 480" className="w-[100vw] md:w-[50vw]">
@@ -190,7 +192,7 @@ py-12
 
           <p
             className="
-                  text-blue-50/90 text-base sm:text-lg xl:text-xl
+                  text-[var(--gray-light)]/90 text-base sm:text-lg xl:text-xl
                   leading-relaxed font-medium
                   drop-shadow-md border-l-2 border-cyan-400 pl-5
                   animate-in fade-in slide-in-from-bottom-8
@@ -262,8 +264,9 @@ py-12
                         className="
                 text-sm xl:text-base font-semibold
                 drop-shadow-md
+                                  uppercase tracking-wide
+                                  text-[var(--blue-light)]
               "
-                        style={{ color: "var(--blue-normal)" }}
                       >
                         {loc.name}
                       </p>
