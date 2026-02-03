@@ -7,7 +7,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--blue-darker)] text-[var(--blue-light)]">
+    <footer className="bg-[var(--blue-darker)] text-[var(--blue-light)] z-10">
 
       {/* ===== MAIN ===== */}
       <div className="max-w-7xl mx-auto px-6 py-16">

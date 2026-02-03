@@ -2,7 +2,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Hero from "./components/section/HeroSection/Hero";
 import Services from "./components/section/Services";
-import PhuQuocMap from "./components/section/PhuQuocMap";
+import PhuQuocMap from "./components/section/MapSection/PhuQuocMap";
 
 export default function HomeVi() {
   return (
@@ -13,7 +13,7 @@ export default function HomeVi() {
         <Hero />
         <PhuQuocMap />
         {/* <Services /> */}
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );
