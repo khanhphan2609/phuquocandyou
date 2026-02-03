@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { MenuIcon, CloseIcon, FaUserCircleIcon } from "../ui/Icons";
 
 const MENU_ITEMS = [
-  { label: "Điểm đến", href: "/", external: false },
+  { label: "Điểm đến", href: "#PhuQuocMap", external: false },
   { label: "Tiện ích", href: "/", external: false },
   { label: "Tin tức", href: "https://news.phuquocandyou.com", external: true },
   {
@@ -21,6 +21,7 @@ export default function Header() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  
 
   // derive lang from pathname to avoid calling setState inside useEffect
   const lang = pathname?.startsWith("/en") ? ("EN" as const) : ("VI" as const);
@@ -62,9 +63,10 @@ export default function Header() {
                     (item.href !== "/" && pathname?.startsWith(item.href)));
                 return (
                   <Link
-                    target="_blank"
                     key={index}
                     href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
                     aria-current={isActive ? "page" : undefined}
                     className={`
     relative flex items-center justify-center
@@ -127,13 +129,13 @@ export default function Header() {
               </div>
 
               {/* Text */}
-              <span className="text-[12px] font-bold uppercase tracking-wider text-cyan-300">
+              <span className="text-[12px] font-bold uppercase tracking-wider text-white">
                 {lang}
               </span>
 
               {/* Arrow */}
               <span
-                className={`text-cyan-300 transition-transform duration-300 ${
+                className={`text-white transition-transform duration-300 ${
                   langOpen ? "rotate-180" : ""
                 }`}
               >
@@ -161,7 +163,7 @@ export default function Header() {
                   </div>
 
                   {/* Text */}
-                  <span className="text-[12px] font-bold uppercase tracking-wider text-cyan-300">
+                  <span className="text-[12px] font-bold uppercase tracking-wider">
                     {lang === "VI" ? "EN" : "VI"}
                   </span>
                 </button>
@@ -179,7 +181,7 @@ export default function Header() {
               {/* <span className="text-[11px] font-black uppercase tracking-[0.1em] text-white">
                 Member
               </span> */}
-              <span className="text-[12px] font-bold text-cyan-300 uppercase tracking-[0.1em]">
+              <span className="text-[12px] font-bold uppercase tracking-[0.1em]">
                 Đăng nhập
               </span>
             </div>
@@ -258,7 +260,7 @@ export default function Header() {
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
                 className={`text-white text-xs font-bold uppercase tracking-[0.1em] transition-colors whitespace-nowrap ${
-                  isActive ? "text-cyan-300" : "hover:text-cyan-400"
+                  isActive ? "text-white" : "hover:text-cyan-400"
                 }`}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -278,13 +280,13 @@ export default function Header() {
           <div className="h-[1px] bg-white/20 my-2"></div>
 
           {/* Login Button in Mobile Menu */}
-          <button className="group flex items-center gap-4 p-1.5 pr-8 bg-cyan-500/10 backdrop-blur-3xl border border-cyan-400/30 rounded-full hover:bg-cyan-500/20 transition-all shadow-2xl w-full justify-center cursor-pointer">
+          <button className="group flex items-center text-white gap-4 p-1.5 pr-8 bg-cyan-500/10 backdrop-blur-3xl border border-cyan-400/30 rounded-full hover:bg-cyan-500/20 transition-all shadow-2xl w-full justify-center cursor-pointer">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] group-hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] transition-all flex-shrink-0">
-              <FaUserCircleIcon className="text-white w-4 h-4" />
+              <FaUserCircleIcon className="w-4 h-4" />
             </div>
             <div className="flex flex-col items-start">
               {/* <span className="text-[11px] font-black uppercase tracking-[0.1em] text-white">Xin chào, Member</span> */}
-              <span className="text-[9px] font-bold text-cyan-300 uppercase tracking-[0.1em]">
+              <span className="text-[9px] font-bold uppercase tracking-[0.1em]">
                 Đăng nhập
               </span>
             </div>

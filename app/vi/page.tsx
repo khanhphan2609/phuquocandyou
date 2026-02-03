@@ -11,7 +11,7 @@ export default function HomeVi() {
       <Header />
       <main className="mx-0 lg:mx-24 2xl:mx-48 grid gap-24 pt-32 pb-10">
         <Hero />
-        {/* <PhuQuocMap /> */}
+        <PhuQuocMap />
         {/* <Services /> */}
         <Footer />
       </main>

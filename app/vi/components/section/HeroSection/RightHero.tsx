@@ -20,8 +20,8 @@ export default function RightHero({
       <div className="relative w-full h-full flex items-center justify-center">
         {/* BACKGROUND */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-          <div className="absolute w-[600px] h-[600px] border border-cyan-500/20 rounded-full animate-spin-slow" />
-          <div className="absolute w-[850px] h-[850px] border border-blue-400/10 rounded-full animate-spin-slow-reverse" />
+          <div className="absolute w-[600px] h-[600px] border border-[var(--[var(--blue-normal)]-normal)]-500/20 rounded-full animate-spin-slow" />
+          <div className="absolute w-[850px] h-[850px] border border-[var(--blue-normal)]-400/10 rounded-full animate-spin-slow-reverse" />
         </div>
 
         {/* ORBS */}

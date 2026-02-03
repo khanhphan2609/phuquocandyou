@@ -13,7 +13,7 @@ export interface ButtonProps
 
 // ===== Styles =====
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-medium \
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium \
    border border-transparent \
    transition-all duration-200 ease-out";
 

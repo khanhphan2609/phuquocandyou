@@ -41,8 +41,8 @@ export default function Orb({
         className={`w-full h-full rounded-full flex flex-col items-center justify-center border backdrop-blur-xl transition-all duration-700
         ${
           isCentered
-            ? "border-white/50 text-white shadow-[0_0_100px_rgba(34,211,238,0.4)]"
-            : "border-white/10 text-blue-100 hover:scale-110 hover:border-cyan-400/50"
+            ? "border-[var(--white)]/80 text-[var(--white)] shadow-[0_0_100px_rgba(34,211,238,0.4)]"
+            : "border-[var(--white)]/40 text-blue-100 hover:scale-110 hover:border-[var(--blue-normal)]-400/50"
         }`}
       >
         <span
@@ -60,8 +60,8 @@ export default function Orb({
                 key={d}
                 className="flex items-center gap-3 justify-center"
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_cyan]" />
-                <span className="text-xs font-bold uppercase tracking-[0.1em] text-cyan-50">
+                <div className="w-1.5 h-1.5 rounded-full bg-[var(--blue-normal)]-400 shadow-[0_0_8px_[var(--blue-normal)]]" />
+                <span className="text-xs font-bold uppercase tracking-[0.1em] text-[var(--blue-normal)]-50">
                   {d}
                 </span>
               </div>

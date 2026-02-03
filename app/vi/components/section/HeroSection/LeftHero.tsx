@@ -41,11 +41,11 @@ export default function LeftHero({
         <div
           className="
             relative rounded-[2rem] lg:rounded-[3.5rem]
-            overflow-hidden bg-white/10 backdrop-blur-2xl
-            border border-white/20
+            overflow-hidden bg-[var(--white)]/10 backdrop-blur-2xl
+            border border-[var(--white)]/20
             shadow-[0_40px_100px_-20px_rgba(0,21,36,0.5)]
             aspect-[4/5.3] flex flex-col
-            transition-all hover:border-white/40
+            transition-all hover:border-[var(--white)]/40
           "
         >
           {/* IMAGE */}
@@ -57,7 +57,7 @@ export default function LeftHero({
               className="w-full h-full object-cover transition-transform duration-1000 scale-105 animate-in fade-in zoom-in-105"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-[#001524]/80 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/80 via-transparent to-transparent" />
 
             {/* TAG */}
             <div
@@ -65,10 +65,10 @@ export default function LeftHero({
                 absolute top-6 left-6 sm:top-8 sm:left-8
                 px-4 py-1.5 sm:px-5 sm:py-2
                 rounded-full backdrop-blur-xl
-                border border-white/30
+                border border-[var(--white)]/30
                 text-[10px] sm:text-[11px]
                 font-black uppercase tracking-[0.3em]
-                text-white bg-gradient-to-r ${data.themeColor}
+                text-[var(--white)] bg-gradient-to-r ${data.themeColor}
               `}
             >
               {data.tag}
@@ -81,7 +81,7 @@ export default function LeftHero({
               key={data.title}
               className="
                 text-[1.8rem] sm:text-3xl lg:text-2xl xl:text-5xl
-                font-black italic text-white
+                font-black italic text-[var(--white)]
                 leading-[1.1] tracking-tight
                 drop-shadow-2xl mb-5
                 animate-in fade-in slide-in-from-bottom-6
@@ -107,7 +107,7 @@ export default function LeftHero({
             <button
               className={`
                 w-full py-4 sm:py-5
-                rounded-[1.4rem] text-white
+                rounded-[1.4rem] text-[var(--white)]
                 font-black text-[10px] sm:text-xs
                 uppercase tracking-[0.35em]
                 shadow-2xl flex items-center justify-center gap-3
@@ -132,9 +132,9 @@ export default function LeftHero({
             className="
         w-10 h-10 rounded-full
         flex items-center justify-center
-        bg-white/10 backdrop-blur
-        border border-white/20
-        text-white text-xl
+        bg-[var(--white)]/10 backdrop-blur
+        border border-[var(--white)]/20
+        text-[var(--white)] text-xl
         active:scale-90 transition
       "
           >
@@ -147,7 +147,7 @@ export default function LeftHero({
               <span
                 key={id}
                 className={`w-2.5 h-2.5 rounded-full transition-all z-10 ${
-                  id === currentTab ? "bg-cyan-400 scale-125" : "bg-white/30"
+                  id === currentTab ? "bg-cyan-400 scale-125" : "bg-[var(--white)]/30"
                 }`}
               />
             ))}
@@ -159,9 +159,9 @@ export default function LeftHero({
             className="
         w-10 h-10 rounded-full
         flex items-center justify-center
-        bg-white/10 backdrop-blur
-        border border-white/20
-        text-white text-xl
+        bg-[var(--white)]/10 backdrop-blur
+        border border-[var(--white)]/20
+        text-[var(--white)] text-xl
         active:scale-90 transition
       "
           >

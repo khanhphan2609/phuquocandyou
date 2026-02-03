@@ -140,8 +140,8 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: #22d3ee;
-    box-shadow: 0 0 6px cyan;
+    background: var(--blue-normal);
+    box-shadow: 0 0 6px var(--blue-normal);
     flex-shrink: 0;
 }
 
@@ -149,7 +149,7 @@
     .detail-dot {
         width: 6px;
         height: 6px;
-        box-shadow: 0 0 8px cyan;
+        box-shadow: 0 0 8px var(--blue-normal);
     }
 }
 
@@ -158,7 +158,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(224, 242, 254, 1);
+    color: var(--blue-light);
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -192,8 +192,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 10px white;
+    background: var(--white);
+    box-shadow: 0 0 10px var(--white);
 }
 
 @media (min-width: 768px) {}

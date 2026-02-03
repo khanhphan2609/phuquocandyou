@@ -9,7 +9,7 @@
   --blue-light-hover: #e0f3f8;
   --blue-light-active: #bfe6f0;
 
-  --blue-normal: #30adcd;
+  --blue-normal: #22d3ee;
   --blue-normal-hover: #2b9cb9;
   --blue-normal-active: #268aa4;
 
@@ -110,4 +110,12 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
