@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "flag-icons/css/flag-icons.min.css";
 import { FaArrowDown } from "react-icons/fa";
-import { Button } from "./Button";
+import { Button } from "./Button/Button";
 
 type Lang = "vi" | "en";
 

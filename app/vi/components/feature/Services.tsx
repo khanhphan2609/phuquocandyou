@@ -1,4 +1,4 @@
-import CardService from "../ui/CardService";
+import CardService from "../ui/CardService/CardService";
 
 const SERVICES = [
   {
@@ -25,7 +25,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <section id="Services" className="mb-20">
+    <section id="Services" className="mb-20 z-10">
       <h1
         className="
   text-center
@@ -48,7 +48,7 @@ export default function Services() {
           {SERVICES.map((item, index) => (
             <div
               key={index}
-              className="min-w-[280px] snap-start sm:min-w-0"
+              className="min-w-[280px] snap-start sm:min-w-0 bg-white rounded-xl shadow-lg overflow-hidden"
             >
               <CardService title={item.title} href={item.href}>
                 <p className="text-sm opacity-80">{item.desc}</p>

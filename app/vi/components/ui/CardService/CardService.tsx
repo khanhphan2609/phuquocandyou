@@ -1,5 +1,5 @@
 import Link from "next/link";
-import "../ui/CardService.css";
+import "./CardService.css";
 
 type CardServiceProps = {
   href?: string;

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/vi/components/layout/Header";
 
 
 

@@ -5,6 +5,7 @@ import {
   TikTokIcon,
   ThreadsIcon,
 } from "@/app/vi/components/ui/Icons";
+
 export type FooterLink = {
   label: string;
   href?: string;

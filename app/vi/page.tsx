@@ -1,8 +1,8 @@
-import Header from "./components/layout/Header";
+import Header from "./components/layout/Header/Header";
 import Footer from "./components/layout/Footer/Footer";
-import Hero from "./components/section/HeroSection/Hero";
-import Services from "./components/section/Services";
-import PhuQuocMap from "./components/section/MapSection/PhuQuocMap";
+import Hero from "./components/feature/HeroSection/Hero";
+import Services from "./components/feature/Services";
+import PhuQuocMap from "./components/feature/MapSection/PhuQuocMap";
 
 export default function HomeVi() {
   return (
