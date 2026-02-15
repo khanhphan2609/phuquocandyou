@@ -2,6 +2,7 @@
 
 import NavLinks from "./NavLinks";
 import { CloseIcon, FaUserCircleIcon } from "../../ui/Icons";
+import LoginButton from "../../ui/LoginButton";
 
 type Props = {
   open: boolean;
@@ -31,10 +32,7 @@ export default function MobileNav({ open, pathname, onClose }: Props) {
             onItemClick={onClose}
           />
 
-          <button className="mt-4 flex items-center gap-4">
-            <FaUserCircleIcon />
-            Đăng nhập
-          </button>
+          <LoginButton variant="mobile" />
         </div>
       </div>
     </>

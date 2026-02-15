@@ -9,6 +9,7 @@ import { MenuIcon } from "../../ui/Icons";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import LanguageSwitcher from "./LanguageSwitcher";
+import LoginButton from "@/app/vi/components/ui/LoginButton";
 
 export default function Header() {
   const pathname = usePathname();
@@ -16,22 +17,47 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full p-4 flex z-50">
-        <Link href="#Hero">
-          <Image src="/logo.png" alt="Phú Quốc & You" width={80} height={80} />
-        </Link>
+      <header className="fixed top-0 left-0 w-full z-50 px-6 py-4">
+        <div className="flex items-center justify-between">
 
-        <DesktopNav pathname={pathname} />
+          {/* LEFT: LOGO */}
+          <Link href="#Hero" className="flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Phú Quốc & You"
+              width={70}
+              height={70}
+            />
+          </Link>
 
-        <div className="hidden lg:flex gap-4">
-          <LanguageSwitcher variant="desktop" />
-        </div>
+          {/* CENTER: DESKTOP NAV */}
+          <DesktopNav pathname={pathname} />
 
-        <div className="lg:hidden flex gap-4 ml-auto">
-          <LanguageSwitcher variant="mobile" />
-          <button onClick={() => setMenuOpen(true)}>
-            <MenuIcon size={20} />
-          </button>
+          {/* RIGHT: ACTIONS */}
+          <div className="flex items-center gap-4">
+
+            {/* Desktop */}
+            <div className="hidden lg:flex items-center gap-4">
+              <LanguageSwitcher variant="desktop" />
+              <LoginButton variant="desktop" />
+            </div>
+
+            {/* Mobile */}
+            <div className="lg:hidden flex items-center gap-4">
+              <LanguageSwitcher variant="mobile" />
+              <button
+  onClick={() => setMenuOpen(true)}
+  className="w-10 h-10 flex items-center justify-center rounded-full
+  bg-gradient-to-br from-cyan-400 to-blue-600
+  shadow-[0_0_10px_rgba(34,211,238,0.4)]
+  hover:shadow-[0_0_18px_rgba(34,211,238,0.7)]
+  transition-all"
+>
+  <MenuIcon size={18} className="text-white" />
+</button>
+            </div>
+
+          </div>
         </div>
       </header>
 

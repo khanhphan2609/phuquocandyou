@@ -1,13 +1,18 @@
 "use client";
 
-import { HERO_ITEMS } from "./hero.data";
-
-type OrbItem = (typeof HERO_ITEMS)[number];
+import { HERO_CONTENT } from "./hero.data";
+import type { HeroTabId } from "./hero.data";
 
 type OrbPosition = {
   x: number;
   y: number;
   size: number;
+};
+
+type OrbItem = {
+  id: HeroTabId;
+  title: string;
+  details: string[];
 };
 
 type OrbProps = {
@@ -17,12 +22,10 @@ type OrbProps = {
   onClick: () => void;
 };
 
-export default function Orb({
-  item,
-  isCentered,
-  position,
-  onClick,
-}: OrbProps) {
+export default function Orb({ item, isCentered, position, onClick }: OrbProps) {
+  const content = HERO_CONTENT[item.id];
+  const Icon = content.icon;
+
   return (
     <div
       onClick={onClick}
@@ -41,27 +44,45 @@ export default function Orb({
         className={`w-full h-full rounded-full flex flex-col items-center justify-center border backdrop-blur-xl transition-all duration-700
         ${
           isCentered
-            ? "border-[var(--white)]/80 text-[var(--white)] shadow-[0_0_100px_rgba(34,211,238,0.4)]"
-            : "border-[var(--white)]/40 text-blue-100 hover:scale-110 hover:border-[var(--blue-normal)]-400/50"
+            ? "border-[var(--white)]/80 text-white shadow-[0_0_100px_rgba(34,211,238,0.4)]"
+            : "border-[var(--white)]/40 text-blue-100 hover:scale-110 hover:border-cyan-400/50"
         }`}
       >
+        {/* ===== ICON ===== */}
+        <div
+          className={`transition-all p-4 duration-500 flex items-center justify-center rounded-full
+  ${
+    isCentered
+      ? `mb-4 w-14 h-14 p-3 bg-gradient-to-br ${content.themeColor}
+         shadow-[0_0_25px_rgba(34,211,238,0.6)]`
+      : "mb-2 w-8 h-8 bg-white/10"
+  }`}
+        >
+          <div
+            className={`transition-all duration-300 ${
+              isCentered ? "scale-110 text-white" : "opacity-80 text-white"
+            }`}
+          >
+            {content.icon}
+          </div>
+        </div>
+
+        {/* ===== TITLE ===== */}
         <span
-          className={`font-black uppercase tracking-[0.25em] drop-shadow-lg ${
+          className={`font-black uppercase tracking-[0.25em] drop-shadow-lg text-center ${
             isCentered ? "text-[20px] mb-4" : "text-xs"
           }`}
         >
           {item.title}
         </span>
 
+        {/* ===== DETAILS (ONLY CENTERED) ===== */}
         {isCentered && (
           <div className="flex flex-col gap-3">
             {item.details.map((d) => (
-              <div
-                key={d}
-                className="flex items-center gap-3 justify-center"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-[var(--blue-normal)]-400 shadow-[0_0_8px_[var(--blue-normal)]]" />
-                <span className="text-xs font-bold uppercase tracking-[0.1em] text-[var(--blue-normal)]-50">
+              <div key={d} className="flex items-center gap-3 justify-center">
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_cyan]" />
+                <span className="text-xs font-bold uppercase tracking-[0.1em] text-cyan-100">
                   {d}
                 </span>
               </div>
