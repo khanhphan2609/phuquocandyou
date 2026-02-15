@@ -1,5 +1,5 @@
 import "./CardSocialsProof.css";
-import { Button } from "./Button/Button";
+import { Button } from "./../Button/Button";
 
 interface CardSocialsProofProps {
   image: string;
