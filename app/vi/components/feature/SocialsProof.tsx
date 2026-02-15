@@ -1,5 +1,5 @@
 
-import CardSocialsProof from "../ui/CardSocialsProof";
+import CardSocialsProof from "../ui/CardSocialsProof/CardSocialsProof";
 
 const SOCIALS_PROOF = [
   {
